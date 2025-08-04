@@ -5,7 +5,7 @@ playCore = "1.10.3"
 coreSplashscreen = "1.0.1"
 coilCompose = "2.6.0"
 desugar_jdk_libs = "2.1.5"
-kotlin = "2.0.0"
+kotlin = "2.1.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
@@ -40,9 +40,9 @@ annotation = "1.9.1"
 # Project versions
 projectApplicationId = "com.db.runlog"
 projectVersionName = "1.0"
-projectMinSdkVersion = "25"
-projectTargetSdkVersion = "34"
-projectCompileSdkVersion = "34"
+projectMinSdkVersion = "34"
+projectTargetSdkVersion = "35"
+projectCompileSdkVersion = "35"
 projectVersionCode = "1"
 
 [libraries]
@@ -115,4 +115,6 @@ room = { id = "androidx.room", version.ref = "room" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
+
 runlog-android-application = {id = "runlog.android.application", version = "unspecified"}
+runlog-android-application-compose = {id = "runlog.android.application.compose", version = "unspecified"}

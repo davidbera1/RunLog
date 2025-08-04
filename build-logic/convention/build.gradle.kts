@@ -18,5 +18,10 @@ gradlePlugin {
             id = "runlog.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+
+        register("androidApplicationCompose") {
+            id = "runlog.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
     }
 }

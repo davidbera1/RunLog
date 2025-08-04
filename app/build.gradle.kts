@@ -1,32 +1,13 @@
 plugins {
+    alias(libs.plugins.runlog.android.application.compose)
     alias(libs.plugins.mapsplatform.secrets.plugin)
-    alias(libs.plugins.runlog.android.application)
-    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.db.runlog"
-    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.db.runlog"
-        minSdk = 34
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-    buildFeatures {
-        compose = true
     }
 }
 
