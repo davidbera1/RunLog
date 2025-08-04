@@ -19,7 +19,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     applicationId = libs.findVersion("projectApplicationId").get().toString()
                     targetSdk = libs.findVersion("projectTargetSdkVersion").get().toString().toInt()
                     versionCode = libs.findVersion("projectVersionCode").get().toString().toInt()
-                    applicationId = libs.findVersion("projectApplicationId").get().toString()
+                    versionName = libs.findVersion("projectVersionName").get().toString()
                 }
 
                 configureKotlinAndroid(this)
