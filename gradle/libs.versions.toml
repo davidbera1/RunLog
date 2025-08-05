@@ -122,6 +122,7 @@ runlog-android-library = { id = "runlog.android.library", version = "unspecified
 runlog-android-library-compose = { id = "runlog.android.library.compose", version = "unspecified" }
 runlog-android-feature-ui = { id = "runlog.android.feature.ui", version = "unspecified" }
 runlog-android-room = { id = "runlog.android.room", version = "unspecified" }
+runlog-jvm-library = { id = "runlog.jvm.library", version = "unspecified" }
 
 [bundles]
 compose = [
