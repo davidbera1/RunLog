@@ -119,3 +119,4 @@ mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.
 runlog-android-application = {id = "runlog.android.application", version = "unspecified"}
 runlog-android-application-compose = {id = "runlog.android.application.compose", version = "unspecified"}
 runlog-android-library = {id = "runlog.android.library", version = "unspecified"}
+runlog-android-library-compose = {id = "runlog.android.library.compose", version = "unspecified"}
