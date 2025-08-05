@@ -43,5 +43,10 @@ gradlePlugin {
             id = "runlog.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+
+        register("jvmLibrary") {
+            id = "runlog.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 }
