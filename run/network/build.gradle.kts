@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.runlog.android.library)
+    alias(libs.plugins.runlog.jvm.ktor)
 }
 
 android {

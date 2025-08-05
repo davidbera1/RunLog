@@ -13,7 +13,6 @@ espressoCore = "3.7.0"
 activityCompose = "1.10.1"
 ktor = "2.3.8"
 ktorClientLogging = "2.3.8"
-ktorServerCallLogging = "2.3.7"
 koin = "3.5.3"
 lifecycleRuntimeKtx = "2.9.2"
 composeBom = "2025.07.00"
@@ -83,7 +82,6 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientLogging" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-server-call-logging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktorServerCallLogging" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
@@ -123,6 +121,7 @@ runlog-android-library-compose = { id = "runlog.android.library.compose", versio
 runlog-android-feature-ui = { id = "runlog.android.feature.ui", version = "unspecified" }
 runlog-android-room = { id = "runlog.android.room", version = "unspecified" }
 runlog-jvm-library = { id = "runlog.jvm.library", version = "unspecified" }
+runlog-jvm-ktor = { id = "runlog.jvm.ktor", version = "unspecified" }
 
 [bundles]
 compose = [
@@ -140,3 +139,11 @@ compose-debug = [
 ]
 koin = ["koin-core", "koin-android", "koin-android-workmanager"]
 koin-compose = ["koin-core", "koin-android", "koin-android-workmanager", "koin-androidx-compose"]
+ktor = [
+    "ktor-client-auth",
+    "ktor-client-cio",
+    "ktor-client-content-negotiation",
+    "ktor-client-core",
+    "ktor-client-logging",
+    "ktor-serialization-kotlinx-json",
+]
