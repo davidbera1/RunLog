@@ -33,5 +33,10 @@ gradlePlugin {
             id = "runlog.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
+
+        register("androidFeatureUi") {
+            id = "runlog.android.feature.ui"
+            implementationClass = "AndroidFeatureUiConventionPlugin"
+        }
     }
 }
