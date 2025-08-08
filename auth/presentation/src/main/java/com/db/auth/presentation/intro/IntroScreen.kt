@@ -17,8 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.db.auth.presentation.R
 import com.db.core.presentation.designsystem.LogoIcon
-import com.db.core.presentation.designsystem.R
 import com.db.core.presentation.designsystem.RunLogTheme
 import com.db.core.presentation.designsystem.components.GradientBackground
 import com.db.core.presentation.designsystem.components.RunLogActionButton
