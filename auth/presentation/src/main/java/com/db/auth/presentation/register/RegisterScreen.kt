@@ -1,5 +1,6 @@
 package com.db.auth.presentation.register
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -96,16 +96,10 @@ private fun RegisterScreen(
                     }
                 }
             }
-            ClickableText(
+            Text(
                 text = annotatedString,
-                onClick = { offset ->
-                    annotatedString.getStringAnnotations(
-                        tag = "clickable_text",
-                        start = offset,
-                        end = offset
-                    ).firstOrNull()?.let {
-                        onAction(RegisterAction.OnLoginClick)
-                    }
+                modifier = Modifier.clickable {
+                    onAction(RegisterAction.OnLoginClick)
                 }
             )
             Spacer(modifier = Modifier.height(48.dp))
