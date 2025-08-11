@@ -15,10 +15,11 @@ import kotlinx.serialization.Serializable
 @Composable
 fun NavigationRoot(
     navController: NavHostController,
+    isLoggedIn: Boolean
 ) {
     NavHost(
         navController = navController,
-        startDestination = AuthRoute
+        startDestination = if (isLoggedIn) RunRoute else AuthRoute
     ) {
         authGraph(navController)
         runGraph(navController)
