@@ -1,5 +1,6 @@
 package com.db.runlog
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -20,6 +21,7 @@ fun NavigationRoot(
         startDestination = AuthRoute
     ) {
         authGraph(navController)
+        runGraph(navController)
     }
 }
 
@@ -76,6 +78,16 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
     }
 }
 
+private fun NavGraphBuilder.runGraph(navController: NavHostController) {
+    navigation<RunRoute>(
+        startDestination = RunOverviewRoute
+    ) {
+        composable<RunOverviewRoute> {
+            Text("Run Overview Screen")
+        }
+    }
+}
+
 @Serializable
 data object AuthRoute
 
@@ -90,3 +102,6 @@ data object LoginRoute
 
 @Serializable
 data object RunRoute
+
+@Serializable
+data object RunOverviewRoute
