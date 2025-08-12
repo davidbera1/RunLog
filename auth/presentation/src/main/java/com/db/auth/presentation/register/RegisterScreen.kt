@@ -81,7 +81,7 @@ fun RegisterScreenRoot(
     RegisterScreen(
         state = viewModel.state,
         onAction = { action ->
-            when(action) {
+            when (action) {
                 RegisterAction.OnLoginClick -> onSignInClick()
                 else -> Unit
             }
@@ -131,13 +131,16 @@ private fun RegisterScreen(
                     }
                 }
             }
+
             Text(
                 text = annotatedString,
                 modifier = Modifier.clickable {
                     onAction(RegisterAction.OnLoginClick)
                 }
             )
+
             Spacer(modifier = Modifier.height(48.dp))
+
             RunLogTextField(
                 state = state.email,
                 startIcon = EmailIcon,
@@ -150,7 +153,9 @@ private fun RegisterScreen(
                 additionalInfo = if (!state.isEmailValid) stringResource(id = R.string.must_be_a_valid_email) else "",
                 keyboardType = KeyboardType.Email
             )
+
             Spacer(modifier = Modifier.height(16.dp))
+
             RunLogPasswordTextField(
                 state = state.password,
                 isPasswordVisible = state.isPasswordVisible,
@@ -161,6 +166,7 @@ private fun RegisterScreen(
                 title = stringResource(id = R.string.password),
                 modifier = Modifier.fillMaxWidth()
             )
+
             Spacer(modifier = Modifier.height(16.dp))
 
             PasswordRequirement(
@@ -170,28 +176,36 @@ private fun RegisterScreen(
                 ),
                 isValid = state.passwordValidationState.hasMinLength
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             PasswordRequirement(
                 text = stringResource(
                     id = R.string.at_least_one_number,
                 ),
                 isValid = state.passwordValidationState.hasNumber
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             PasswordRequirement(
                 text = stringResource(
                     id = R.string.contains_lowercase_char,
                 ),
                 isValid = state.passwordValidationState.hasLowerCaseChar
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             PasswordRequirement(
                 text = stringResource(
                     id = R.string.contains_uppercase_char,
                 ),
                 isValid = state.passwordValidationState.hasUpperCaseChar
             )
+
             Spacer(modifier = Modifier.height(32.dp))
+
             RunLogActionButton(
                 text = stringResource(id = R.string.register),
                 isLoading = state.isRegistering,
