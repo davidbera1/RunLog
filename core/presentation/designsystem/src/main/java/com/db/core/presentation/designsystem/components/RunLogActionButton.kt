@@ -60,6 +60,7 @@ fun RunLogActionButton(
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Text(
+
                 text = text,
                 modifier = Modifier
                     .alpha(if (isLoading) 0f else 1f),
@@ -104,6 +105,7 @@ fun RunLogOutlinedActionButton(
                 strokeWidth = 1.5.dp,
                 color = MaterialTheme.colorScheme.onBackground
             )
+
             Text(
                 text = text,
                 modifier = Modifier
