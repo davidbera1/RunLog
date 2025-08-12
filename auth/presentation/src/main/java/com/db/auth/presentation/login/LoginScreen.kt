@@ -101,6 +101,7 @@ private fun LoginScreen(
                 fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.headlineMedium
             )
+
             Text(
                 text = stringResource(id = R.string.runique_welcome_text),
                 fontSize = 12.sp,
@@ -118,7 +119,9 @@ private fun LoginScreen(
                 title = stringResource(id = R.string.email),
                 modifier = Modifier.fillMaxWidth()
             )
+
             Spacer(modifier = Modifier.height(16.dp))
+
             RunLogPasswordTextField(
                 state = state.password,
                 isPasswordVisible = state.isPasswordVisible,
@@ -129,14 +132,16 @@ private fun LoginScreen(
                 title = stringResource(id = R.string.password),
                 modifier = Modifier.fillMaxWidth()
             )
+
             Spacer(modifier = Modifier.height(32.dp))
+
             RunLogActionButton(
                 text = stringResource(id = R.string.login),
                 isLoading = state.isLoggingIn,
                 enabled = state.canLogin && !state.isLoggingIn,
                 onClick = {
                     onAction(LoginAction.OnLoginClick)
-                },
+                }
             )
 
             val annotatedString = buildAnnotatedString {
