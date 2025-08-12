@@ -43,7 +43,6 @@ import com.db.core.presentation.designsystem.LockIcon
 import com.db.core.presentation.designsystem.R
 import com.db.core.presentation.designsystem.RunLogTheme
 
-
 @Composable
 fun RunLogPasswordTextField(
     state: TextFieldState,
@@ -71,7 +70,9 @@ fun RunLogPasswordTextField(
                 )
             }
         }
+
         Spacer(modifier = Modifier.height(4.dp))
+
         BasicSecureTextField(
             state = state,
             textObfuscationMode = if (isPasswordVisible) {
@@ -117,7 +118,9 @@ fun RunLogPasswordTextField(
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+
                     Spacer(modifier = Modifier.width(16.dp))
+
                     Box(
                         modifier = Modifier
                             .weight(1f)
@@ -133,12 +136,13 @@ fun RunLogPasswordTextField(
                         }
                         innerBox()
                     }
+
                     IconButton(onClick = onTogglePasswordVisibility) {
                         Icon(
                             imageVector = if (!isPasswordVisible) {
                                 EyeClosedIcon
                             } else EyeOpenedIcon,
-                            contentDescription = if(isPasswordVisible) {
+                            contentDescription = if (isPasswordVisible) {
                                 stringResource(id = R.string.show_password)
                             } else {
                                 stringResource(id = R.string.hide_password)
