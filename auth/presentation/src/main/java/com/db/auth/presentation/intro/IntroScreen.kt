@@ -63,12 +63,16 @@ fun IntroScreen(
                 color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 20.sp
             )
+
             Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = stringResource(id = R.string.runlog_description),
                 style = MaterialTheme.typography.bodySmall
             )
+
             Spacer(modifier = Modifier.height(32.dp))
+
             RunLogOutlinedActionButton(
                 text = stringResource(id = R.string.sign_in),
                 isLoading = false,
@@ -78,7 +82,9 @@ fun IntroScreen(
                 modifier = Modifier
                     .fillMaxWidth()
             )
+
             Spacer(modifier = Modifier.height(16.dp))
+
             RunLogActionButton(
                 text = stringResource(id = R.string.sign_up),
                 isLoading = false,
@@ -104,7 +110,9 @@ private fun RunLogLogoVertical(
             contentDescription = "Logo",
             tint = MaterialTheme.colorScheme.onBackground
         )
+
         Spacer(modifier = Modifier.height(12.dp))
+        
         Text(
             text = stringResource(id = R.string.runlog),
             fontSize = 24.sp,
