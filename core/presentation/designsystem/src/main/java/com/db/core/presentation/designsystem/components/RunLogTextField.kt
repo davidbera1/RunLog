@@ -56,7 +56,7 @@ fun RunLogTextField(
     var isFocused by remember {
         mutableStateOf(false)
     }
-    Column (
+    Column(
         modifier = modifier
     ) {
         Row(
@@ -65,19 +65,19 @@ fun RunLogTextField(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if(title != null) {
+            if (title != null) {
                 Text(
                     text = title,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-            if(error != null) {
+            if (error != null) {
                 Text(
                     text = error,
                     color = MaterialTheme.colorScheme.error,
                     fontSize = 12.sp
                 )
-            } else if(additionalInfo != null) {
+            } else if (additionalInfo != null) {
                 Text(
                     text = additionalInfo,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -85,7 +85,9 @@ fun RunLogTextField(
                 )
             }
         }
+
         Spacer(modifier = Modifier.height(4.dp))
+
         BasicTextField(
             state = state,
             textStyle = LocalTextStyle.current.copy(
@@ -126,19 +128,20 @@ fun RunLogTextField(
                         .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if(startIcon != null) {
+                    if (startIcon != null) {
                         Icon(
                             imageVector = startIcon,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
+
                         Spacer(modifier = Modifier.width(16.dp))
                     }
                     Box(
                         modifier = Modifier
                             .weight(1f)
                     ) {
-                        if(state.text.isEmpty() && !isFocused) {
+                        if (state.text.isEmpty() && !isFocused) {
                             Text(
                                 text = hint,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
@@ -149,8 +152,9 @@ fun RunLogTextField(
                         }
                         innerBox()
                     }
-                    if(endIcon != null) {
+                    if (endIcon != null) {
                         Spacer(modifier = Modifier.width(16.dp))
+
                         Icon(
                             imageVector = endIcon,
                             contentDescription = null,
