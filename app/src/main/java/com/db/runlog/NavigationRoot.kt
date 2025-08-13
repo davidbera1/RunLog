@@ -9,6 +9,7 @@ import androidx.navigation.navigation
 import com.db.auth.presentation.intro.IntroScreenRoot
 import com.db.auth.presentation.login.LoginScreenRoot
 import com.db.auth.presentation.register.RegisterScreenRoot
+import com.db.run.presentation.active_run.ActiveRunScreenRoot
 import com.db.run.presentation.run_overview.RunOverviewScreenRoot
 import kotlinx.serialization.Serializable
 
@@ -19,7 +20,7 @@ fun NavigationRoot(
 ) {
     NavHost(
         navController = navController,
-        startDestination = if (isLoggedIn) RunRoute else AuthRoute
+        startDestination = if (isLoggedIn) Run else Auth
     ) {
         authGraph(navController)
         runGraph(navController)
@@ -27,7 +28,7 @@ fun NavigationRoot(
 }
 
 private fun NavGraphBuilder.authGraph(navController: NavHostController) {
-    navigation<AuthRoute>(
+    navigation<Auth>(
         startDestination = IntroRoute
     ) {
         composable<IntroRoute> {
@@ -59,8 +60,8 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
         composable<LoginRoute> {
             LoginScreenRoot(
                 onLoginSuccess = {
-                    navController.navigate(RunRoute) {
-                        popUpTo(AuthRoute) {
+                    navController.navigate(Run) {
+                        popUpTo(Auth) {
                             inclusive = true
                         }
                     }
@@ -80,17 +81,24 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
 }
 
 private fun NavGraphBuilder.runGraph(navController: NavHostController) {
-    navigation<RunRoute>(
+    navigation<Run>(
         startDestination = RunOverviewRoute
     ) {
         composable<RunOverviewRoute> {
-            RunOverviewScreenRoot()
+            RunOverviewScreenRoot(
+                onStartRunClick = {
+                    navController.navigate(ActiveRunRoute)
+                }
+            )
+        }
+        composable<ActiveRunRoute> {
+            ActiveRunScreenRoot()
         }
     }
 }
 
 @Serializable
-data object AuthRoute
+data object Auth
 
 @Serializable
 data object IntroRoute
@@ -101,8 +109,12 @@ data object RegisterRoute
 @Serializable
 data object LoginRoute
 
+
 @Serializable
-data object RunRoute
+data object Run
 
 @Serializable
 data object RunOverviewRoute
+
+@Serializable
+data object ActiveRunRoute

@@ -1,4 +1,5 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.db.run.presentation.run_overview
 
 import androidx.compose.foundation.layout.size
@@ -26,10 +27,17 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RunOverviewScreenRoot(
+    onStartRunClick: () -> Unit,
     viewModel: RunOverviewViewModel = koinViewModel(),
 ) {
     RunOverviewScreen(
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                RunOverviewAction.OnStartClick -> onStartRunClick()
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
