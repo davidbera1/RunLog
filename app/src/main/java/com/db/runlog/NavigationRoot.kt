@@ -1,6 +1,5 @@
 package com.db.runlog
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -10,6 +9,7 @@ import androidx.navigation.navigation
 import com.db.auth.presentation.intro.IntroScreenRoot
 import com.db.auth.presentation.login.LoginScreenRoot
 import com.db.auth.presentation.register.RegisterScreenRoot
+import com.db.run.presentation.run_overview.RunOverviewScreenRoot
 import kotlinx.serialization.Serializable
 
 @Composable
@@ -84,7 +84,7 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         startDestination = RunOverviewRoute
     ) {
         composable<RunOverviewRoute> {
-            Text("Run Overview Screen")
+            RunOverviewScreenRoot()
         }
     }
 }
