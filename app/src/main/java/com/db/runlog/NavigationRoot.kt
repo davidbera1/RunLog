@@ -41,6 +41,7 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
                 }
             )
         }
+
         composable<RegisterRoute> {
             RegisterScreenRoot(
                 onSignInClick = {
@@ -57,6 +58,7 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
                 }
             )
         }
+
         composable<LoginRoute> {
             LoginScreenRoot(
                 onLoginSuccess = {
@@ -91,6 +93,7 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
                 }
             )
         }
+
         composable<ActiveRunRoute> {
             ActiveRunScreenRoot()
         }
