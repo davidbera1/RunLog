@@ -48,7 +48,9 @@ fun RunDataCard(
             value = elapsedTime.formatted(),
             valueFontSize = 32.sp
         )
+
         Spacer(modifier = Modifier.height(24.dp))
+
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -61,6 +63,7 @@ fun RunDataCard(
                 modifier = Modifier
                     .defaultMinSize(minWidth = 75.dp)
             )
+
             RunDataItem(
                 title = stringResource(id = R.string.pace),
                 value = elapsedTime.toFormattedPace(
@@ -89,6 +92,7 @@ private fun RunDataItem(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 12.sp
         )
+
         Text(
             text = value,
             color = MaterialTheme.colorScheme.onSurface,
