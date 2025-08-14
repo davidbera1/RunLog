@@ -22,7 +22,7 @@ fun Double.toFormattedKm(): String {
 
 @SuppressLint("DefaultLocale")
 fun Duration.toFormattedPace(distanceKm: Double): String {
-    if(this == Duration.ZERO || distanceKm <= 0.0) {
+    if (this == Duration.ZERO || distanceKm <= 0.0) {
         return "-"
     }
 
