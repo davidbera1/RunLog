@@ -2,6 +2,12 @@
 
 package com.db.run.presentation.active_run
 
+import android.Manifest
+import android.content.Context
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,18 +16,26 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.db.core.presentation.designsystem.RunLogTheme
 import com.db.core.presentation.designsystem.StartIcon
 import com.db.core.presentation.designsystem.StopIcon
+import com.db.core.presentation.designsystem.components.RunLogDialog
 import com.db.core.presentation.designsystem.components.RunLogFloatingActionButton
+import com.db.core.presentation.designsystem.components.RunLogOutlinedActionButton
 import com.db.core.presentation.designsystem.components.RunLogScaffold
 import com.db.core.presentation.designsystem.components.RunLogToolbar
 import com.db.run.presentation.R
 import com.db.run.presentation.active_run.components.RunDataCard
+import com.db.run.presentation.util.hasLocationPermission
+import com.db.run.presentation.util.hasNotificationPermission
+import com.db.run.presentation.util.shouldShowLocationPermissionRationale
+import com.db.run.presentation.util.shouldShowNotificationPermissionRationale
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -39,6 +53,57 @@ private fun ActiveRunScreen(
     state: ActiveRunState,
     onAction: (ActiveRunAction) -> Unit
 ) {
+    val context = LocalContext.current
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        val hasCoarseLocationPermission =
+            permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
+        val hasFineLocationPermission =
+            permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true
+        val hasNotificationPermission = permissions[Manifest.permission.POST_NOTIFICATIONS] == true
+
+        val activity = context as ComponentActivity
+        val showLocationRationale = activity.shouldShowLocationPermissionRationale()
+        val showNotificationRationale = activity.shouldShowNotificationPermissionRationale()
+
+        onAction(
+            ActiveRunAction.SubmitLocationPermissionInfo(
+                acceptedLocationPermission = hasCoarseLocationPermission && hasFineLocationPermission,
+                showLocationRationale = showLocationRationale
+            )
+        )
+        onAction(
+            ActiveRunAction.SubmitNotificationPermissionInfo(
+                acceptedNotificationPermission = hasNotificationPermission,
+                showNotificationRationale = showNotificationRationale
+            )
+        )
+    }
+
+    LaunchedEffect(key1 = true) {
+        val activity = context as ComponentActivity
+        val showLocationRationale = activity.shouldShowLocationPermissionRationale()
+        val showNotificationRationale = activity.shouldShowNotificationPermissionRationale()
+
+        onAction(
+            ActiveRunAction.SubmitLocationPermissionInfo(
+                acceptedLocationPermission = context.hasLocationPermission(),
+                showLocationRationale = showLocationRationale
+            )
+        )
+        onAction(
+            ActiveRunAction.SubmitNotificationPermissionInfo(
+                acceptedNotificationPermission = context.hasNotificationPermission(),
+                showNotificationRationale = showNotificationRationale
+            )
+        )
+
+        if (!showLocationRationale && !showNotificationRationale) {
+            permissionLauncher.requestRunLogPermissions(context)
+        }
+    }
+
     RunLogScaffold(
         withGradient = false,
         topAppBar = {
@@ -83,6 +148,59 @@ private fun ActiveRunScreen(
                     .fillMaxWidth()
             )
         }
+    }
+
+    if (state.showLocationRationale || state.showNotificationRationale) {
+        RunLogDialog(
+            title = stringResource(R.string.permission_required),
+            onDismiss = { /* dismiss not allowed by tapping outside the dialog */ },
+            description = when {
+                state.showLocationRationale && state.showNotificationRationale -> {
+                    stringResource(id = R.string.location_notification_rationale)
+                }
+
+                state.showLocationRationale -> {
+                    stringResource(id = R.string.location_rationale)
+                }
+
+                else -> {
+                    stringResource(id = R.string.notification_rationale)
+                }
+            },
+            primaryButton = {
+                RunLogOutlinedActionButton(
+                    text = stringResource(id = R.string.okay),
+                    isLoading = false,
+                    onClick = {
+                        onAction(ActiveRunAction.DismissRationaleDialog)
+                        permissionLauncher.requestRunLogPermissions(context)
+                    }
+                )
+            }
+        )
+    }
+}
+
+private fun ActivityResultLauncher<Array<String>>.requestRunLogPermissions(
+    context: Context
+) {
+    val hasLocationPermission = context.hasLocationPermission()
+    val hasNotificationPermission = context.hasNotificationPermission()
+
+    val locationPermissions = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION,
+    )
+
+    val notificationPermission = arrayOf(Manifest.permission.POST_NOTIFICATIONS)
+
+    when {
+        !hasLocationPermission && !hasNotificationPermission -> {
+            launch(locationPermissions + notificationPermission)
+        }
+
+        !hasLocationPermission -> launch(locationPermissions)
+        !hasNotificationPermission -> launch(notificationPermission)
     }
 }
 
