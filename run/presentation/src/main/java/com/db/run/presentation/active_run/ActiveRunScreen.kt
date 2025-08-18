@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.db.core.presentation.designsystem.RunLogTheme
 import com.db.core.presentation.designsystem.StartIcon
 import com.db.core.presentation.designsystem.StopIcon
+import com.db.core.presentation.designsystem.components.RunLogActionButton
 import com.db.core.presentation.designsystem.components.RunLogDialog
 import com.db.core.presentation.designsystem.components.RunLogFloatingActionButton
 import com.db.core.presentation.designsystem.components.RunLogOutlinedActionButton
@@ -156,6 +157,36 @@ private fun ActiveRunScreen(
                     .fillMaxWidth()
             )
         }
+    }
+
+    if (!state.shouldTrack && state.hasStartedRunning) {
+        RunLogDialog(
+            title = stringResource(R.string.running_is_paused),
+            onDismiss = {
+                onAction(ActiveRunAction.OnResumeRunClick)
+            },
+            description = stringResource(R.string.resume_or_finish_run),
+            primaryButton = {
+                RunLogActionButton(
+                    text = stringResource(R.string.resume),
+                    isLoading = false,
+                    onClick = {
+                        onAction(ActiveRunAction.OnResumeRunClick)
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+            },
+            secondaryButton = {
+                RunLogOutlinedActionButton(
+                    text = stringResource(R.string.finish),
+                    isLoading = state.isSavingRun,
+                    onClick = {
+                        onAction(ActiveRunAction.OnFinishRunClick)
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        )
     }
 
     if (state.showLocationRationale || state.showNotificationRationale) {
