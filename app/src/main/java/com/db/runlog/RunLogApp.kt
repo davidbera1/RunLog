@@ -4,6 +4,7 @@ import android.app.Application
 import com.db.auth.data.di.authDataModule
 import com.db.auth.presentation.di.authViewModelModule
 import com.db.core.data.di.coreDataModule
+import com.db.core.database.di.databaseModule
 import com.db.run.location.di.locationModule
 import com.db.run.presentation.di.runPresentationModule
 import com.db.runlog.di.appModule
@@ -33,7 +34,8 @@ class RunLogApp : Application() {
                 appModule,
                 coreDataModule,
                 runPresentationModule,
-                locationModule
+                locationModule,
+                databaseModule
             )
         }
     }
