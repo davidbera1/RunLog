@@ -6,6 +6,7 @@ import com.db.auth.presentation.di.authViewModelModule
 import com.db.core.data.di.coreDataModule
 import com.db.core.database.di.databaseModule
 import com.db.run.location.di.locationModule
+import com.db.run.network.di.networkModule
 import com.db.run.presentation.di.runPresentationModule
 import com.db.runlog.di.appModule
 import kotlinx.coroutines.CoroutineScope
@@ -35,7 +36,8 @@ class RunLogApp : Application() {
                 coreDataModule,
                 runPresentationModule,
                 locationModule,
-                databaseModule
+                databaseModule,
+                networkModule
             )
         }
     }
