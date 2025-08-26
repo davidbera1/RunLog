@@ -93,6 +93,13 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
             RunOverviewScreenRoot(
                 onStartRunClick = {
                     navController.navigate(ActiveRunRoute)
+                },
+                onLogoutClick = {
+                    navController.navigate(Auth) {
+                        popUpTo(Run) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
@@ -104,7 +111,7 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         ) {
             val context = LocalContext.current
             ActiveRunScreenRoot(
-                onBack =  {
+                onBack = {
                     navController.navigateUp()
                 },
                 onFinish = {
