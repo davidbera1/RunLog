@@ -19,14 +19,15 @@ import kotlinx.serialization.Serializable
 @Composable
 fun NavigationRoot(
     navController: NavHostController,
-    isLoggedIn: Boolean
+    isLoggedIn: Boolean,
+    onAnalyticsClick: () -> Unit
 ) {
     NavHost(
         navController = navController,
         startDestination = if (isLoggedIn) Run else Auth
     ) {
         authGraph(navController)
-        runGraph(navController)
+        runGraph(navController, onAnalyticsClick)
     }
 }
 
@@ -85,7 +86,10 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
     }
 }
 
-private fun NavGraphBuilder.runGraph(navController: NavHostController) {
+private fun NavGraphBuilder.runGraph(
+    navController: NavHostController,
+    onAnalyticsClick: () -> Unit
+) {
     navigation<Run>(
         startDestination = RunOverviewRoute
     ) {
@@ -100,7 +104,8 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
                             inclusive = true
                         }
                     }
-                }
+                },
+                onAnalyticsClick = onAnalyticsClick
             )
         }
 
@@ -157,3 +162,7 @@ data object RunOverviewRoute
 
 @Serializable
 data object ActiveRunRoute
+
+
+@Serializable
+data object AnalyticsDashboard
