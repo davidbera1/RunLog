@@ -2,6 +2,8 @@
 agp = "8.9.3"
 androidTools = "31.12.0"
 playCore = "1.10.3"
+playAppUpdate = "2.1.0"
+playFeatureDelivery = "2.1.0"
 coreSplashscreen = "1.0.1"
 coilCompose = "2.6.0"
 desugar_jdk_libs = "2.1.5"
@@ -54,6 +56,10 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-security-crypto-ktx = { module = "androidx.security:security-crypto-ktx", version.ref = "securityCryptoKtx" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 core = { module = "com.google.android.play:core", version.ref = "playCore" }
+play-app-update = { module = "com.google.android.play:app-update", version.ref = "playAppUpdate" }
+play-app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "playAppUpdate" }
+play-feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "playFeatureDelivery" }
+play-feature-delivery-ktx = { module = "com.google.android.play:feature-delivery-ktx", version.ref = "playFeatureDelivery" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
