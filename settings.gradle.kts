@@ -35,3 +35,7 @@ include(":run:presentation")
 include(":run:location")
 include(":run:network")
 
+include(":analytics:data")
+include(":analytics:domain")
+include(":analytics:presentation")
+include(":analytics:analytics-feature")
